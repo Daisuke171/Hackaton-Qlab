@@ -1,0 +1,99 @@
+---
+const { title = "Send us your feedback", onSubmitEndpoint = "/api/feedback" } =
+  Astro.props;
+
+import { Image } from "astro:assets";
+import Monsters from "../assets/monsters.jpg";
+---
+
+<aside class="feedback-section">
+  <div class="feedback-info">
+    <h2>Send us Feedback or a Comment!</h2>
+    <p>Your input helps us improve. We appreciate your time!</p>
+    <Image src={Monsters} alt="Monsters" width={300} />
+  </div>
+
+  <form action={onSubmitEndpoint} method="POST" class="feedback-form">
+    <label>
+      Name (optional)
+      <input type="text" name="name" placeholder="Your name" />
+    </label>
+    <label>
+      Email
+      <input type="email" name="email" required placeholder="you@example.com" />
+    </label>
+    <label>
+      Message
+      <textarea
+        name="message"
+        required
+        placeholder="Write your feedback or question..."
+        rows="5"></textarea>
+    </label>
+    <button type="submit">Send</button>
+  </form>
+</aside>
+
+<style>
+  .feedback-section {
+    display: flex;
+    flex-direction: row;
+    background-color: #FFFFFF;
+    justify-content: space-evenly;
+    padding: 3rem 1rem;
+  }
+
+  .feedback-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 420px;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid #000;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.95rem;
+  }
+
+  input,
+  textarea {
+    padding: 0.6rem 0.8rem;
+    border-radius: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.25);
+    color: #000;
+  }
+
+  button {
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 0.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.4);
+  }
+</style>
