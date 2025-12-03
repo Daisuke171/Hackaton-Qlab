@@ -1,0 +1,340 @@
+---
+// SubjectsMenu.astro
+// A clean, responsive subject menu for a specific career.
+// Usage: <SubjectsMenu career="Ingeniería en Informática" subjects={[...]} />
+
+const {
+  career = "Carrera",
+  subjects = [
+    {
+      year: 1,
+      term: "1/2c",
+      name: "Arquitectura y Sistemas Operativos",
+      code: "ASO",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 1,
+      term: "1/2c",
+      name: "Base de Datos I",
+      code: "BD1",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 1,
+      term: "1/2c",
+      name: "Inglés I",
+      code: "ING1",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 1,
+      term: "1/2c",
+      name: "Matemática",
+      code: "MAT1",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 1,
+      term: "1/2c",
+      name: "Organización Empresarial",
+      code: "OE",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 1,
+      term: "1/2c",
+      name: "Probabilidad y Estadística",
+      code: "PE",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 1,
+      term: "1/2c",
+      name: "Programación I",
+      code: "PROG1",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 1,
+      term: "1/2c",
+      name: "Programación II",
+      code: "PROG2",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "1/2c",
+      name: "Base de Datos II",
+      code: "BD2",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "1/2c",
+      name: "Gestión de Desarrollo de Software",
+      code: "GDS",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "1/2c",
+      name: "Inglés II",
+      code: "ING2",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "1/2c",
+      name: "Introducción al Análisis de Datos",
+      code: "IAD",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "1/2c",
+      name: "Legislación",
+      code: "LEG",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "1/2c",
+      name: "Metodología de Sistemas I",
+      code: "MS1",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "1/2c",
+      name: "Metodología de Sistemas II",
+      code: "MS2",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "1/2c",
+      name: "Programación III",
+      code: "PROG3",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "1/2c",
+      name: "Programación IV",
+      code: "PROG4",
+      correl: "Si",
+      final: "Si",
+    },
+    {
+      year: 2,
+      term: "2c",
+      name: "Trabajo Final Integrador",
+      code: "TFI",
+      correl: "Si",
+      final: "",
+    },
+  ],
+} = Astro.props;
+
+let open = false;
+let query = "";
+
+function toggle() {
+  open = !open;
+}
+function onSearch(e) {
+  query = e.target.value.toLowerCase();
+}
+function filtered(list) {
+  if (!query) return list;
+  return list.filter((s) => s.name.toLowerCase().includes(query));
+}
+---
+
+<nav class="subjects-nav" aria-label="Materias de la carrera">
+  <header class="header">
+    <h2 class="career-title">{career}</h2>
+
+    <div class="controls">
+      <input
+        type="search"
+        class="search"
+        placeholder="Buscar materia..."
+        value={query}
+        onInput={onSearch}
+      />
+
+      <button class="burger" aria-expanded={open} onClick={toggle}>
+        <svg
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <section class={`menu ${open ? "open" : ""}`}>
+    <ul class="subjects">
+      {
+        filtered(subjects).map((s) => (
+          <li key={s.code} class="subject">
+            <a href={`/materias/${s.code}`} class="subject-link">
+              <strong>{s.name}</strong>
+              <span class="code">{s.code}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</nav>
+
+<style>
+  :root {
+    --glass: rgba(255, 255, 255, 0.6);
+    --shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+    --border: rgba(15, 23, 42, 0.08);
+    --accent: #2563eb;
+  }
+
+  .subjects-nav {
+    backdrop-filter: blur(6px) saturate(110%);
+    background: var(--glass);
+    padding: 1rem;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 2rem auto;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .career-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: solid 1px rgba(15, 23, 42, 0.74);
+    border-radius: 10px;
+    min-width: 180px;
+  }
+  .search:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  }
+
+  .burger {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+  }
+  .burger:focus {
+    outline: 3px solid rgba(37, 99, 235, 0.2);
+  }
+
+  .menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .menu.open {
+    max-height: 500px;
+    margin-top: 12px;
+  }
+
+  .subjects {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .subject {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 12px;
+    transition:
+      box-shadow 0.15s ease,
+      transform 0.12s ease;
+  }
+
+  .subject:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+  }
+
+  .subject-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-decoration: none;
+    color: #0f172a;
+  }
+  .subject-link:hover {
+    color: var(--accent);
+  }
+
+  .code {
+    font-size: 0.82rem;
+    color: #64748b;
+  }
+
+  @media (min-width: 900px) {
+    .menu {
+      max-height: none !important;
+      margin-top: 12px;
+    }
+    .burger {
+      display: none;
+    }
+    .search {
+      min-width: 260px;
+    }
+  }
+</style>
