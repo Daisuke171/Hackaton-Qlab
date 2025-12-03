@@ -1,0 +1,110 @@
+---
+import Burguer from "../assets/burguer.astro";
+import Bell from "../assets/bell.astro";
+import Logout from "../assets/logout.astro";
+---
+<nav>
+  <button id="btnBurguer" class="icon-btn" aria-label="Toggle menu">
+    <Burguer w="24px" h="24px"></Burguer>
+  </button>
+  <a href="/" id="title">RoadToDev</a>
+  <section id="rightSideNav">
+    <button id="btnNotifications" class="icon-btn" aria-label="Notifications">
+      <Bell w="22px" />
+    </button>
+    <button id="btnLogout" class="icon-btn" aria-label="Logout">
+      <Logout w="22px" />
+    </button>
+  </section>
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+
+  #title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    cursor: pointer;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  #title:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+  #rightSideNav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    color: #ffffff;
+  }
+
+  .icon-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .icon-btn:active {
+    transform: translateY(0);
+  }
+
+  #btnBurguer {
+    padding: 0.5rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0.6rem 1rem;
+    }
+
+    #title {
+      font-size: 1.25rem;
+    }
+
+    .icon-btn {
+      padding: 0.5rem;
+    }
+
+    #rightSideNav {
+      gap: 0.4rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #title {
+      font-size: 1.1rem;
+    }
+  }
+</style>
