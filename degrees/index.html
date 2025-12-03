@@ -1,13 +1,78 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>carreras</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Buscador de Carreras</title>
+</head>
+<body>
+
+    <div class="hero">
+        <!-- 1. Fondo -->
+        <div class="hero-bg"></div>
+        
+        <!-- 2. Overlay -->
+        <div class="hero-overlay"></div>
+
+        <!-- 3. Contenido -->
+        <div class="hero-content">
+            <span class="badge">Tu futuro comienza hoy</span>
+            
+            <h3 class="hero-title">
+                Descubre el camino hacia <span>tu vocación</span>
+            </h3>
+
+            <p class="hero-desc">
+                Busca información de la carrera que te apasiona, compara universidades y toma la mejor decisión para tu futuro profesional.
+            </p>
+
+            <!-- Search Box -->
+            <div class="search-container">
+                <form id="searchForm" class="search-form">
+                    <div class="input-wrapper">
+                        <!-- Search Icon SVG -->
+                        <div class="input-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </div>
+                        <input type="text" id="searchInput" placeholder="Ej. Arquitectura, Medicina..." />
+                    </div>
+                    <button type="submit" class="btn-search">
+                        Buscar
+                        <!-- ArrowRight Icon SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="dot" style="background-color: #22c55e;"></div>
+                    <span>+2,000 Carreras</span>
+                </div>
+                <div class="stat-item">
+                    <div class="dot" style="background-color: #3b82f6;"></div>
+                    <span>500 Universidades</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LISTADO DE CARRERAS -->
+    <div class="list-section">
+        <h4 class="list-title">Explora las Carreras Disponibles</h4>
+        
+        <!-- Contenedor donde JS inyectará las tarjetas -->
+        <div id="degreesContainer" class="degrees-list">
+            <!-- Las carreras se cargarán aquí dinámicamente -->
+        </div>
+
+        <div class="see-more">
+            <button>Ver todas las carreras &rarr;</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
 </html>

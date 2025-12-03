@@ -1,0 +1,313 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  background-color: #f3f4f6; 
+  color: #1f2937; 
+}
+
+/* --- HERO SECTION --- */
+.hero {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 24, 39, 0.7); 
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 1.5rem;
+  max-width: 56rem; 
+  margin: 0 auto;
+  color: white;
+}
+
+/* Badge */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: rgba(99, 102, 241, 0.2); 
+  border: 1px solid #818cf8; 
+  color: #c7d2fe; 
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* Títulos */
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title span {
+  color: #818cf8; /* indigo-400 */
+}
+
+.hero-desc {
+  font-size: 1.125rem;
+  color: #d1d5db; /* gray-300 */
+  margin-bottom: 2rem;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Media Queries para tipografía responsive */
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+  .hero-desc {
+    font-size: 1.25rem;
+  }
+}
+
+/* --- BUSCADOR --- */
+.search-container {
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  max-width: 32rem;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.search-container:hover {
+  transform: scale(1.01);
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .search-form {
+    flex-direction: row;
+  }
+}
+
+.input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  background-color: #f9fafb; /* gray-50 */
+  border: 1px solid #f3f4f6; /* gray-100 */
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+}
+
+.input-wrapper:focus-within {
+  border-color: #a5b4fc; /* indigo-300 */
+  box-shadow: 0 0 0 2px #e0e7ff; /* ring-indigo-100 */
+}
+
+.input-wrapper input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0.75rem 0;
+  outline: none;
+  color: #374151;
+  font-size: 1rem;
+}
+
+.input-icon {
+  color: #9ca3af; /* gray-400 */
+  margin-right: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.btn-search {
+  background-color: #4f46e5; /* indigo-600 */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-search:hover {
+  background-color: #4338ca; /* indigo-700 */
+}
+
+/* --- ESTADÍSTICAS --- */
+.stats {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  color: #9ca3af; /* gray-400 */
+  font-size: 0.875rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+/* --- LISTADO DE CARRERAS --- */
+.list-section {
+  padding: 4rem 1.5rem;
+  max-width: 56rem; /* 4xl */
+  margin: 0 auto;
+}
+
+.list-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.degrees-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.degree-card {
+  background-color: white;
+  border: 1px solid #e5e7eb; /* gray-200 */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.degree-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-color: #c7d2fe; /* indigo-200 */
+}
+
+.card-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-circle {
+  background-color: #eef2ff; /* indigo-50 */
+  color: #4f46e5; /* indigo-600 */
+  padding: 0.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.degree-card:hover .icon-circle {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.card-info h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.1rem;
+  transition: color 0.2s;
+}
+
+.degree-card:hover .card-info h5 {
+  color: #4338ca; /* indigo-700 */
+}
+
+.card-info p {
+  font-size: 0.875rem;
+  color: #6b7280; /* gray-500 */
+}
+
+.card-arrow {
+  color: #d1d5db; /* gray-300 */
+  transition: all 0.2s;
+  margin-right: 0.5rem;
+}
+
+.degree-card:hover .card-arrow {
+  color: #6366f1; /* indigo-500 */
+  transform: translateX(4px);
+}
+
+.see-more {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.see-more button {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.see-more button:hover {
+  color: #3730a3;
+}

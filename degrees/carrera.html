@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="carrera.css" />
+    <title>Detalle de Carrera</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <button class="nav-btn" onclick="window.history.back()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <span style="font-weight: 600; color: #374151">Detalle</span>
+
+      <button class="nav-btn" onclick="alert('Funcionalidad de búsqueda')">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+    </nav>
+
+    <div class="container">
+      <div id="header-container">
+        <p style="text-align: center; color: #9ca3af">
+          Cargando información...
+        </p>
+      </div>
+
+      <div id="plan-container"></div>
+    </div>
+
+    <script>
+      const fullDegreeData = {
+        1: {
+          id: 1,
+          name: "Arquitectura",
+          university: "UBA",
+          description:
+            "La carrera de Arquitectura forma profesionales capaces de diseñar, proyectar y dirigir la construcción de espacios habitables, combinando arte y técnica.",
+          plan: [
+            {
+              semester: "Primer Cuatrimestre",
+              subjects: [
+                { name: "Introducción a la Arquitectura", hours: "60hs" },
+                { name: "Matemática I", hours: "40hs" },
+                { name: "Sistemas de Representación", hours: "80hs" },
+              ],
+            },
+            {
+              semester: "Segundo Cuatrimestre",
+              subjects: [
+                { name: "Física Aplicada", hours: "40hs" },
+                { name: "Historia de la Arquitectura I", hours: "50hs" },
+                { name: "Diseño I", hours: "120hs" },
+              ],
+            },
+          ],
+        },
+        2: {
+          id: 2,
+          name: "Ingeniería en Sistemas",
+          university: "UTN",
+          description:
+            "Formación integral en el desarrollo de software, gestión de proyectos tecnológicos y arquitectura de sistemas informáticos.",
+          plan: [
+            {
+              semester: "Primer Año - Anual",
+              subjects: [
+                { name: "Álgebra y Geometría", hours: "Anual" },
+                { name: "Análisis Matemático I", hours: "Anual" },
+                { name: "Algoritmos y Estructuras de Datos", hours: "Anual" },
+              ],
+            },
+          ],
+        },
+        // ... resto de carreras
+      };
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const degreeId = parseInt(urlParams.get("id"));
+
+      function renderDetail() {
+        const headerContainer = document.getElementById("header-container");
+        const planContainer = document.getElementById("plan-container");
+
+        // Buscamos los datos
+        const data = fullDegreeData[degreeId];
+
+        if (!data) {
+          headerContainer.innerHTML =
+            "<p style='color:red; text-align:center'>Carrera no encontrada.</p>";
+          return;
+        }
+
+        // A) Renderizar Header
+        headerContainer.innerHTML = `
+                <div class="header-card">
+                    <span class="badge">${data.university}</span>
+                    <h1>${data.name}</h1>
+                    <p>${data.description}</p>
+                </div>
+            `;
+
+        // B) Renderizar Plan de Estudios
+        let planHTML = "";
+
+        data.plan.forEach((period) => {
+          // Creamos el HTML de las materias
+          const subjectsHTML = period.subjects
+            .map(
+              (sub) => `
+                    <li class="subject-item">
+                        <span class="subject-name">${sub.name}</span>
+                        <span class="subject-hours">${sub.hours}</span>
+                    </li>
+                `
+            )
+            .join("");
+
+          // Armamos la sección completa del cuatrimestre
+          planHTML += `
+                    <div class="semester-section">
+                        <h3 class="semester-title">${period.semester}</h3>
+                        <ul class="subject-list">
+                            ${subjectsHTML}
+                        </ul>
+                    </div>
+                `;
+        });
+
+        planContainer.innerHTML = planHTML;
+      }
+
+      // Ejecutar al cargar
+      renderDetail();
+    </script>
+  </body>
+</html>
